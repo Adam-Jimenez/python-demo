@@ -2,10 +2,9 @@ from sqlalchemy import Column, Integer, String, Sequence, Enum
 from sqlalchemy import MetaData, Table
 from sqlalchemy.orm import mapper
 from sqlalchemy.ext.declarative import declarative_base
+from .dbobject import DbObject
 
 alchemy_metadata = MetaData()
-
-Object = declarative_base()
 
 food = Table(
     'food', alchemy_metadata,
@@ -15,11 +14,8 @@ food = Table(
     Column('category', Enum('fruit', 'viande food', 'viande', 'milked product'))
 )
 
-class Food(object):
-    def __init__(self, name, description, category):
-        self.name = name
-        self.description = description
-        self.category = category
+class Food(DbObject):
+    pass
 
 mapper(Food, food)
 
